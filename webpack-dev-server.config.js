@@ -42,6 +42,14 @@ const config = {
         loaders: ['babel-loader'],
         exclude: [nodeModulesPath],
       },
+      {
+        test: /\.md$/,
+        loader: 'raw-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
     ],
   },
 };

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import ClearFix from 'material-ui/internal/ClearFix';
-import spacing from 'material-ui/styles/spacing';
-import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
+import ClearFix from 'material-ui-ref/internal/ClearFix';
+import spacing from 'material-ui-ref/styles/spacing';
+import withWidth, {SMALL, LARGE} from 'material-ui-ref/utils/withWidth';
 
 const desktopGutter = spacing.desktopGutter;
 

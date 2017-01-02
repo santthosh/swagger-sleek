@@ -11,6 +11,14 @@ const config = {
     'webpack/hot/only-dev-server',
     path.join(__dirname, '/src/app/app.js'),
   ],
+  resolve: {
+    // When requiring, you don't need to add these extensions
+    extensions: ['', '.js', '.md', '.txt'],
+    alias: {
+      // material-ui requires will be searched in src folder, not in node_modules
+      'material-ui-ref': path.resolve(__dirname, './node_modules/material-ui'),
+    },
+  },
   // Server Configuration options
   devServer: {
     contentBase: 'src/www', // Relative directory for base of server

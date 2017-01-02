@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import spacing from 'material-ui/styles/spacing';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
+import AppBar from 'material-ui-ref/AppBar';
+import IconButton from 'material-ui-ref/IconButton';
+import spacing from 'material-ui-ref/styles/spacing';
+import getMuiTheme from 'material-ui-ref/styles/getMuiTheme';
+import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui-ref/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
-import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import withWidth, {MEDIUM, LARGE} from 'material-ui-ref/utils/withWidth';
+import darkBaseTheme from 'material-ui-ref/styles/baseThemes/darkBaseTheme';
 
 class Master extends Component {
   static propTypes = {

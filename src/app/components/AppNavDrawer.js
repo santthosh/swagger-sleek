@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import Drawer from 'material-ui/Drawer';
-import {List, ListItem, makeSelectable} from 'material-ui/List';
-import {spacing, typography, zIndex} from 'material-ui/styles';
-import {indigo500} from 'material-ui/styles/colors';
+import Drawer from 'material-ui-ref/Drawer';
+import {List, ListItem, makeSelectable} from 'material-ui-ref/List';
+import {spacing, typography, zIndex} from 'material-ui-ref/styles';
+import {indigo500} from 'material-ui-ref/styles/colors';
 
 const SelectableList = makeSelectable(List);
 

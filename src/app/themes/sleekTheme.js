@@ -4,11 +4,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _colors = require('material-ui/styles/colors');
+var _colors = require('material-ui-ref/styles/colors');
 
-var _colorManipulator = require('material-ui/utils/colorManipulator');
+var _colorManipulator = require('material-ui-ref/utils/colorManipulator');
 
-var _spacing = require('material-ui/styles/spacing');
+var _spacing = require('material-ui-ref/styles/spacing');
 
 var _spacing2 = _interopRequireDefault(_spacing);
 

@@ -1,16 +1,16 @@
 {
-  "name": "material-ui-example-webpack",
-  "version": "0.16.4",
-  "description": "Sample project that uses Material-UI",
+  "name": "swagger-sleek",
+  "version": "0.0.1",
+  "description": "A new way to experience API's in Swagger format",
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/santthosh/swagger-sleek.git"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-    "build": "webpack --config webpack-production.config.js --progress --colors"
+    "build": "NODE_ENV=docs-production webpack --config webpack-production.config.js --progress --colors"
   },
-  "private": true,
+  "private": false,
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
@@ -20,9 +20,11 @@
     "html-webpack-plugin": "^2.24.1",
     "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "copy-webpack-plugin": "^4.0.1"
   },
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "history": "^2.0.0",
     "material-ui": "^0.16.4",
     "css-loader": "^0.25.0",

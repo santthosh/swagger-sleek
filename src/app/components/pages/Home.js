@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import FullWidthSection from '../FullWidthSection';
-import RaisedButton from 'material-ui/RaisedButton';
-import withWidth, {LARGE} from 'material-ui/utils/withWidth';
-import spacing from 'material-ui/styles/spacing';
-import typography from 'material-ui/styles/typography';
+import RaisedButton from 'material-ui-ref/RaisedButton';
+import withWidth, {LARGE} from 'material-ui-ref/utils/withWidth';
+import spacing from 'material-ui-ref/styles/spacing';
+import typography from 'material-ui-ref/styles/typography';
 import darkBaseTheme from '../../themes/sleekTheme';
-import {indigo500, grey200, darkWhite} from 'material-ui/styles/colors';
+import {indigo500, grey200, darkWhite} from 'material-ui-ref/styles/colors';
 
 class HomePage extends Component {
 
@@ -101,7 +101,7 @@ class HomePage extends Component {
     const styles = {
       root: {
         backgroundColor: grey200,
-        textAlign: 'center',
+        textAlign: 'center'
       },
       h3: {
         margin: 0,
@@ -111,8 +111,9 @@ class HomePage extends Component {
       },
       button: {
         marginTop: 32,
-        backgroundColor: darkBaseTheme.palette.primary1Color
-      },
+        backgroundColor:indigo500,
+        primaryColor:indigo500
+      }
     };
 
     return (
@@ -121,12 +122,15 @@ class HomePage extends Component {
           Want to help make this <span style={styles.nowrap}>project awesome? </span>
           <span style={styles.nowrap}>Check out our repo.</span>
         </h3>
-        <RaisedButton
-          label="GitHub"
-          primary={true}
-          href="https://github.com/santthosh/swagger-sleek"
-          style={styles.button}
-        />
+        <div style={styles.div}>
+          <RaisedButton
+              label="GitHub"
+              primary={true}
+              href="https://github.com/santthosh/swagger-sleek"
+              style={styles.button}
+          />
+        </div>
+
       </FullWidthSection>
     );
   }

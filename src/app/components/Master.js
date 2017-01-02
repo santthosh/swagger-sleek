@@ -7,7 +7,7 @@ import getMuiTheme from 'material-ui-ref/styles/getMuiTheme';
 import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui-ref/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import withWidth, {MEDIUM, LARGE} from 'material-ui-ref/utils/withWidth';
-import darkBaseTheme from 'material-ui-ref/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from '../themes/sleekTheme';
 
 class Master extends Component {
   static propTypes = {
@@ -36,7 +36,7 @@ class Master extends Component {
 
   componentWillMount() {
     this.setState({
-      muiTheme: getMuiTheme(darkBaseTheme),
+      muiTheme: getMuiTheme(lightBaseTheme),
     });
   }
 
@@ -147,7 +147,7 @@ class Master extends Component {
     const styles = this.getStyles();
     const title =
       router.isActive('/help') ? 'Help' :
-      router.isActive('/customization') ? 'Customization' :
+      router.isActive('/configuration') ? 'Configuration' :
       router.isActive('/components') ? 'Components' :
       router.isActive('/discover-more') ? 'Discover More' : '';
 

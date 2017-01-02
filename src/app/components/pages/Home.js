@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui-ref/RaisedButton';
 import withWidth, {LARGE} from 'material-ui-ref/utils/withWidth';
 import spacing from 'material-ui-ref/styles/spacing';
 import typography from 'material-ui-ref/styles/typography';
-import darkBaseTheme from '../../themes/sleekTheme';
+import lightBaseTheme from '../../themes/sleekTheme';
 import {indigo500, grey200, darkWhite} from 'material-ui-ref/styles/colors';
 
 class HomePage extends Component {
@@ -34,7 +34,7 @@ class HomePage extends Component {
         maxWidth: 575,
       },
       label: {
-        color: darkBaseTheme.palette.primary1Color,
+        color: lightBaseTheme.palette.primary1Color,
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',
@@ -136,7 +136,7 @@ class HomePage extends Component {
   }
 
   handleTouchTapDemo = () => {
-    this.context.router.push('/components');
+    this.context.router.push('/configuration');
   };
 
   render() {

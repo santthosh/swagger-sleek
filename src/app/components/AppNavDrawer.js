@@ -5,6 +5,7 @@ import {spacing, typography, zIndex} from 'material-ui-ref/styles';
 import {indigo500} from 'material-ui-ref/styles/colors';
 import HelpIcon from 'material-ui-ref/svg-icons/action/help';
 import LicenseIcon from 'material-ui-ref/svg-icons/action/work';
+import SettingsIcon from 'material-ui-ref/svg-icons/action/settings';
 
 const SelectableList = makeSelectable(List);
 
@@ -93,6 +94,12 @@ class AppNavDrawer extends Component {
           value={location.pathname}
           onChange={onChangeList}
         >
+          <ListItem
+              primaryText="Configuration"
+              leftIcon={<SettingsIcon/>}
+              primaryTogglesNestedList={false}
+              value="/configuration"
+          />
           <ListItem
             primaryText="Help"
             leftIcon={<HelpIcon/>}

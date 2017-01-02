@@ -1,13 +1,13 @@
 import React from 'react';
 import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
-import help from './help.md';
+import license from './license.md';
 
-const Help = () => (
+const License = () => (
   <div>
     <Title render={(previousTitle) => `Help - ${previousTitle}`} />
-    <MarkdownElement text={help} />
+    <MarkdownElement text={license} />
   </div>
 );
 
-export default Help;
+export default License;

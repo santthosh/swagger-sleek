@@ -9,7 +9,7 @@ import {
 import Master from './components/Master';
 import Home from './components/pages/Home';
 
-import Help from './components/pages/help/help';
+import License from './components/pages/license/license';
 
 /**
  * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
@@ -24,9 +24,9 @@ const AppRoutes = (
   <Route path="/" component={Master}>
     <IndexRoute component={Home} />
     <Route path="home" component={Home} />
-    <Redirect from="get-started" to="/get-started/help" />
-    <Route path="get-started">
-      <Route path="help" component={Help} />
+    <Redirect from="help" to="/help/license" />
+    <Route path="Help">
+      <Route path="license" component={License} />
     </Route>
   </Route>
 );

@@ -92,10 +92,10 @@ class AppNavDrawer extends Component {
           onChange={onChangeList}
         >
           <ListItem
-            primaryText="Get Started"
+            primaryText="Help"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="Help" value="/get-started/help" />
+              <ListItem primaryText="License" value="/help/license" />
             ]}
           />
         </SelectableList>

@@ -123,7 +123,7 @@ class HomePage extends Component {
         <RaisedButton
           label="GitHub"
           primary={true}
-          href="https://github.com/callemall/material-ui"
+          href="https://github.com/santthosh/swagger-sleek"
           style={styles.button}
         />
       </FullWidthSection>

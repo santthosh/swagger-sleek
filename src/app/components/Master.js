@@ -145,7 +145,7 @@ class Master extends Component {
     const router = this.context.router;
     const styles = this.getStyles();
     const title =
-      router.isActive('/get-started') ? 'Get Started' :
+      router.isActive('/help') ? 'Help' :
       router.isActive('/customization') ? 'Customization' :
       router.isActive('/components') ? 'Components' :
       router.isActive('/discover-more') ? 'Discover More' : '';
@@ -175,7 +175,7 @@ class Master extends Component {
           iconElementRight={
             <IconButton
               iconClassName="muidocs-icon-custom-github"
-              href="https://github.com/callemall/material-ui"
+              href="https://github.com/santthosh/swagger-sleek"
             />
           }
           style={styles.appBar}

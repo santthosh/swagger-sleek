@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import spacing from 'material-ui/styles/spacing';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
+import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -53,6 +53,7 @@ class Master extends Component {
         position: 'fixed',
         // Needed to overlap the examples
         zIndex: this.state.muiTheme.zIndex.appBar + 1,
+        backgroundColor:indigo500,
         top: 0,
       },
       root: {

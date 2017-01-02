@@ -4,8 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import withWidth, {LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
+import darkBaseTheme from '../../themes/sleekTheme';
+import {indigo500, grey200, darkWhite} from 'material-ui/styles/colors';
 
 class HomePage extends Component {
 
@@ -20,7 +20,7 @@ class HomePage extends Component {
   homePageHero() {
     const styles = {
       root: {
-        backgroundColor: cyan500,
+        backgroundColor: indigo500,
         overflow: 'hidden',
       },
       svgLogo: {
@@ -111,6 +111,7 @@ class HomePage extends Component {
       },
       button: {
         marginTop: 32,
+        backgroundColor: darkBaseTheme.palette.primary1Color
       },
     };
 

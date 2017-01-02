@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import {spacing, typography, zIndex} from 'material-ui/styles';
-import {cyan500} from 'material-ui/styles/colors';
+import {indigo500} from 'material-ui/styles/colors';
 
 const SelectableList = makeSelectable(List);
 
@@ -13,7 +13,7 @@ const styles = {
     color: typography.textFullWhite,
     lineHeight: `${spacing.desktopKeylineIncrement}px`,
     fontWeight: typography.fontWeightLight,
-    backgroundColor: cyan500,
+    backgroundColor: indigo500,
     paddingLeft: spacing.desktopGutter,
     marginBottom: 8,
   },

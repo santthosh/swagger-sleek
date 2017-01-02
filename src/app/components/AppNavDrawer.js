@@ -48,22 +48,6 @@ class AppNavDrawer extends Component {
     const self = this;
   }
 
-  firstNonPreReleaseVersion() {
-    let version;
-    for (let i = 0; i < this.state.muiVersions.length; i++) {
-      version = this.state.muiVersions[i];
-      // If the version doesn't contain '-' and isn't 'HEAD'
-      if (!/-/.test(version) && version !== 'HEAD') {
-        break;
-      }
-    }
-    return version;
-  }
-
-  handleRequestChangeLink = (event, value) => {
-    window.location = value;
-  };
-
   handleTouchTapHeader = () => {
     this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);

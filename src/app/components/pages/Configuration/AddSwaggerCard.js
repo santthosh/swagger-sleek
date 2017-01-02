@@ -8,34 +8,42 @@ export default class AddSwaggerCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: true,
+      definitions: JSON.parse(localStorage.getItem('definitions')) || [],
     };
   }
 
   handleAdd = () => {
-    this.setState({expanded: true});
+      this.state.definitions.push({
+            name: this.name,
+            url: this.url
+          });
+
+      console.log(this.state.definitions);
+      localStorage.setItem('definitions', JSON.stringify(this.state.definitions));
   };
 
   render() {
     return (
-      <Card expanded={this.state.expanded}>
+      <Card expanded={true}>
         <CardTitle title="Add Swagger" subtitle="Add's Swagger to this Sleek" expandable={true} />
         <CardText expandable={false}>
             <TextField
-                id="add-swagger-name"
+                ref={(field) => { this.name = field.input.value; }}
                 defaultValue="Pet Store"
                 floatingLabelText="Name of the API or Service"
                 fullWidth={true}
+                onChange={(event,value) => { this.name = value; }}
             /><br/>
             <TextField
-                id="add-swagger-url"
+                ref={(field) => { this.url = field.input.value; }}
                 defaultValue="http://petstore.swagger.io/v2/swagger.json"
                 floatingLabelText="Swagger URL"
                 fullWidth={true}
+                onChange={(event,value) => { this.url = value; }}
             /><br/>
         </CardText>
         <CardActions>
-          <RaisedButton label="Add" primary={true} onTouchTap={this.handleAdd} />
+          <RaisedButton label="Add" secondary={true} onTouchTap={this.handleAdd} />
         </CardActions>
       </Card>
     );

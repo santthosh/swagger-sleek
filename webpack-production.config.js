@@ -3,6 +3,7 @@ const path = require('path');
 const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+var S3Plugin = require('webpack-s3-sync-plugin');
 
 const config = {
   entry: [
@@ -51,6 +52,17 @@ const config = {
       {from: 'src/www/images', to: 'images'},
       {from: 'src/www/index.html'},
     ]),
+    new S3Plugin({
+      s3Options: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: 'us-east-1'
+      },
+      s3UploadOptions: {
+        Bucket: 'swaggersleek.com'
+      },
+      directory:buildPath
+    })
   ],
   module: {
     loaders: [

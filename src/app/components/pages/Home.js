@@ -1,11 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import HomeFeature from './HomeFeature';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui/RaisedButton';
 import withWidth, {LARGE} from 'material-ui/utils/withWidth';
 import spacing from 'material-ui/styles/spacing';
 import typography from 'material-ui/styles/typography';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import {cyan500, grey200, darkWhite} from 'material-ui/styles/colors';
 
 class HomePage extends Component {
@@ -35,7 +34,7 @@ class HomePage extends Component {
         maxWidth: 575,
       },
       label: {
-        color: lightBaseTheme.palette.primary1Color,
+        color: darkBaseTheme.palette.primary1Color,
       },
       githubStyle: {
         margin: '16px 32px 0px 8px',
@@ -81,13 +80,10 @@ class HomePage extends Component {
 
     return (
       <FullWidthSection style={styles.root}>
-        <img style={styles.svgLogo} src="images/material-ui-logo.svg" />
         <div style={styles.tagline}>
-          <h1 style={styles.h1}>Material-UI</h1>
+          <h1 style={styles.h1}>Swagger Sleek</h1>
           <h2 style={styles.h2}>
-            A Set of React Components <span style={styles.nowrap}>
-            that Implement</span> <span style={styles.nowrap}>
-            Google&apos;s Material Design</span>
+            A new way to experience API's
           </h2>
           <RaisedButton
             className="demo-button"
@@ -97,70 +93,6 @@ class HomePage extends Component {
             labelStyle={styles.label}
           />
         </div>
-      </FullWidthSection>
-    );
-  }
-
-  homePurpose() {
-    const styles = {
-      root: {
-        backgroundColor: grey200,
-      },
-      content: {
-        maxWidth: 700,
-        padding: 0,
-        margin: '0 auto',
-        fontWeight: typography.fontWeightLight,
-        fontSize: 20,
-        lineHeight: '28px',
-        paddingTop: 19,
-        marginBottom: 13,
-        letterSpacing: 0,
-        color: typography.textDarkBlack,
-      },
-    };
-
-    return (
-      <FullWidthSection
-        style={styles.root}
-        useContent={true}
-        contentStyle={styles.content}
-        contentType="p"
-        className="home-purpose"
-      >
-        Material-UI came about from our love of&nbsp;
-        <a href="http://facebook.github.io/react/">React</a> and&nbsp;
-        <a href="https://www.google.com/design/spec/material-design/introduction.html">
-         Google's Material Design
-        </a>. We're currently using it on a project at&nbsp;
-        <a href="https://www.call-em-all.com/Careers">Call-Em-All</a> and plan on adding to it
-        and making it better in the coming months.
-      </FullWidthSection>
-    );
-  }
-
-  homeFeatures() {
-    const styles = {maxWidth: 906};
-
-    return (
-      <FullWidthSection useContent={true} contentStyle={styles}>
-        <HomeFeature
-          heading="Get Started"
-          route="/get-started"
-          img="images/get-started.svg"
-          firstChild={true}
-        />
-        <HomeFeature
-          heading="Customization"
-          route="/customization"
-          img="images/css-framework.svg"
-        />
-        <HomeFeature
-          heading="Components"
-          route="/components"
-          img="images/components.svg"
-          lastChild={true}
-        />
       </FullWidthSection>
     );
   }
@@ -210,8 +142,6 @@ class HomePage extends Component {
     return (
       <div style={style}>
         {this.homePageHero()}
-        {this.homePurpose()}
-        {this.homeFeatures()}
         {this.homeContribute()}
       </div>
     );

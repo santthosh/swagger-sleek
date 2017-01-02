@@ -9,11 +9,7 @@ import {
 import Master from './components/Master';
 import Home from './components/pages/Home';
 
-import RequiredKnowledge from './components/pages/get-started/RequiredKnowledge';
-import Installation from './components/pages/get-started/Installation';
-import Usage from './components/pages/get-started/Usage';
-import Examples from './components/pages/get-started/Examples';
-import ServerRendering from './components/pages/get-started/ServerRendering';
+import Help from './components/pages/help/help';
 
 /**
  * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
@@ -28,13 +24,9 @@ const AppRoutes = (
   <Route path="/" component={Master}>
     <IndexRoute component={Home} />
     <Route path="home" component={Home} />
-    <Redirect from="get-started" to="/get-started/required-knowledge" />
+    <Redirect from="get-started" to="/get-started/help" />
     <Route path="get-started">
-      <Route path="required-knowledge" component={RequiredKnowledge} />
-      <Route path="installation" component={Installation} />
-      <Route path="usage" component={Usage} />
-      <Route path="examples" component={Examples} />
-      <Route path="server-rendering" component={ServerRendering} />
+      <Route path="help" component={Help} />
     </Route>
   </Route>
 );

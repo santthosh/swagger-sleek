@@ -3,6 +3,8 @@ import Drawer from 'material-ui-ref/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui-ref/List';
 import {spacing, typography, zIndex} from 'material-ui-ref/styles';
 import {indigo500} from 'material-ui-ref/styles/colors';
+import HelpIcon from 'material-ui-ref/svg-icons/action/help';
+import LicenseIcon from 'material-ui-ref/svg-icons/action/work';
 
 const SelectableList = makeSelectable(List);
 
@@ -93,9 +95,10 @@ class AppNavDrawer extends Component {
         >
           <ListItem
             primaryText="Help"
+            leftIcon={<HelpIcon/>}
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="License" value="/help/license" />
+              <ListItem leftIcon={<LicenseIcon/>} primaryText="License" value="/help/license" />
             ]}
           />
         </SelectableList>

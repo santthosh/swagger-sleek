@@ -44,8 +44,7 @@ const swagger = (state = defaultState, action) => {
                 'swagger' :  JSON.parse(action.response),
                 'status':'hide'
             };
-            var definitions = state.definitions;
-            definitions.push(current);
+            var definitions = [...state.definitions,current];
 
             return Object.assign({}, state, {
                 current:current,

@@ -5,7 +5,7 @@ import IconButton from 'material-ui-ref/IconButton';
 import spacing from 'material-ui-ref/styles/spacing';
 import getMuiTheme from 'material-ui-ref/styles/getMuiTheme';
 import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui-ref/styles/colors';
-import AppNavDrawer from './AppNavDrawer';
+import DynamicAppNavDrawer from './containers/DynamicAppNavDrawer';
 import withWidth, {MEDIUM, LARGE} from 'material-ui-ref/utils/withWidth';
 import lightBaseTheme from '../themes/sleekTheme';
 
@@ -148,8 +148,7 @@ class Master extends Component {
     const title =
       router.isActive('/help') ? 'Help' :
       router.isActive('/configuration') ? 'Configuration' :
-      router.isActive('/components') ? 'Components' :
-      router.isActive('/discover-more') ? 'Discover More' : '';
+      router.isActive('/api') ? 'API' : '';
 
     let docked = false;
     let showMenuIconButton = true;
@@ -192,7 +191,7 @@ class Master extends Component {
           </div> :
           children
         }
-        <AppNavDrawer
+        <DynamicAppNavDrawer
           style={styles.navDrawer}
           location={location}
           docked={docked}

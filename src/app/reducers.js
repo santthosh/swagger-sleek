@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import { FETCH_SWAGGER_REQUEST, FETCH_SWAGGER_FAILURE, FETCH_SWAGGER_SUCCESS } from './../actions/index'
+import { FETCH_SWAGGER_REQUEST, FETCH_SWAGGER_FAILURE, FETCH_SWAGGER_SUCCESS } from './actions/swaggerRequestAction'
 
-var defaultState = {
+const defaultState = {
     'current': {
         'name': 'Pet Store',
         'url': 'http://petstore.swagger.io/v2/swagger.json',
-        'status': 'loading',
+        'status': 'hide',
         'exception': null,
         'swagger' : null
     },
@@ -19,32 +19,45 @@ const swagger = (state = defaultState, action) => {
             console.log('reducer: FETCH_SWAGGER_REQUEST');
             return Object.assign({}, state, {
                 'current': {
+                    name: state.current.name,
+                    url: state.current.url,
                     'status': 'loading'
-                }
+                },
+                definitions: state.definitions
             });
         case FETCH_SWAGGER_FAILURE:
             console.log('reducer: FETCH_SWAGGER_FAILURE');
             return Object.assign({}, state, {
                 'current': {
+                    name: state.current.name,
+                    url: state.current.url,
                     'exception' :  action.error.message,
                     'status':'hide'
-                }
+                },
+                definitions: state.definitions
             });
         case FETCH_SWAGGER_SUCCESS:
             console.log('reducer: FETCH_SWAGGER_SUCCESS');
+            var current = {
+                name: state.current.name,
+                url: state.current.url,
+                'swagger' :  JSON.parse(action.response),
+                'status':'hide'
+            };
+            var definitions = state.definitions;
+            definitions.push(current);
+
             return Object.assign({}, state, {
-                'current': {
-                    'swagger' :  JSON.parse(action.response),
-                    'status':'hide'
-                }
+                current:current,
+                definitions: definitions
             });
         default:
             return state
     }
-}
+};
 
-const swaggerReducer = combineReducers({
+const swaggerApp = combineReducers({
     swagger
-})
+});
 
-export default swaggerReducer
+export default swaggerApp

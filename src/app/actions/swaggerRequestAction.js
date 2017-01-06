@@ -4,15 +4,15 @@ export const FETCH_SWAGGER_SUCCESS = 'FETCH_SWAGGER_SUCCESS';
 
 export const fetchSwaggerRequest = (name,url) => {
     return (dispatch) => {
-        console.log(name);
-        console.log(url);
         const request = new XMLHttpRequest();
 
         request.onreadystatechange = function() {
-            if (request.readyState === 4 && request.status === 200) {
-                dispatch(fetchSwaggerSuccess(request.responseText));
-            } else {
-                dispatch(fetchSwaggerFailure(new Error('Failed to fetch swagger for url: ' + url)));
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    dispatch(fetchSwaggerSuccess(request.responseText));
+                } else {
+                    dispatch(fetchSwaggerFailure(new Error('Failed to fetch swagger for url: ' + url)));
+                }
             }
         };
         request.open('GET', url, true);

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui-ref/Card';
 import RaisedButton from 'material-ui-ref/RaisedButton';
 import TextField from 'material-ui-ref/TextField';
 import RefreshIndicator from 'material-ui-ref/RefreshIndicator';
-import {fetchSwaggerRequest} from '../../../actions/index';
 
 const style = {
     container: {
@@ -15,18 +14,26 @@ const style = {
     },
 };
 
-class AddAPICard extends React.Component {
+class APICard extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+        onAddSwagger: PropTypes.func.isRequired,
+        status: PropTypes.string.isRequired,
+    };
+
+    name = this.props.name;
+    url = this.props.url;
+
+    handleTouchTap = () => {
+        this.props.onAddSwagger(this.name,this.url);
+    };
 
     render() {
-
-        const { store } = this.context;
-        const state = store.getState();
-        this.name = "Pet Store";
-        this.url = "http://petstore.swagger.io/v2/swagger.json";
+        const {
+            status
+        } = this.props;
 
         return (
             <Card expanded={true}>
@@ -34,30 +41,29 @@ class AddAPICard extends React.Component {
                 <CardText expandable={false}>
                     <TextField
                         ref={(field) => { if(field) { this.name = field.input.value; } }}
-                        defaultValue="Pet Store"
+                        defaultValue={this.name}
                         floatingLabelText="Name of the API or Service"
                         fullWidth={true}
                         onChange={(event,value) => { this.name = value; }}
-                        disabled={(state.swagger.current.status === 'loading')}
+                        disabled={(status === 'loading')}
                     /><br/>
                     <TextField
                         ref={(field) => { if(field) { this.url = field.input.value; } }}
-                        defaultValue="http://petstore.swagger.io/v2/swagger.json"
+                        defaultValue={this.url}
                         floatingLabelText="Swagger URL"
                         fullWidth={true}
                         onChange={(event,value) => { this.url = value; }}
-                        disabled={(state.swagger.current.status === 'loading')}
+                        disabled={(status === 'loading')}
                     /><br/>
                 </CardText>
                 <CardActions>
-                    <RaisedButton label="Add" disabled={(state.swagger.current.status === 'loading')} primary={true} onTouchTap={
-                        store.dispatch(fetchSwaggerRequest(this.name,this.url))
-                    } />
+                    <RaisedButton label="Add" disabled={(status === 'loading')} primary={true}
+                                  onTouchTap={this.handleTouchTap} />
                     <RefreshIndicator
                         size={40}
                         left={10}
                         top={10}
-                        status={state.swagger.current.status}
+                        status={status}
                         style={style.refresh}
                     />
                 </CardActions>
@@ -66,6 +72,4 @@ class AddAPICard extends React.Component {
     }
 }
 
-AddAPICard.contextTypes = { store: React.PropTypes.object };
-
-export default AddAPICard;
+export default APICard;

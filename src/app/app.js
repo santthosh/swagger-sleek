@@ -4,8 +4,11 @@ import {Router, useRouterHistory} from 'react-router';
 import AppRoutes from './AppRoutes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {createHashHistory} from 'history';
-import ConfigureStore from './store/index';
 import { Provider } from 'react-redux';
+import {createStore,applyMiddleware} from 'redux'
+import swaggerApp from './reducers'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
 
 // Helpers for debugging
 window.React = React;
@@ -15,12 +18,21 @@ window.Perf = require('react-addons-perf');
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
+const loggerMiddleware = createLogger()
+
+let store = createStore(swaggerApp,
+    applyMiddleware(
+        thunkMiddleware, // lets us dispatch() functions
+        loggerMiddleware // neat middleware that logs actions
+    )
+);
+
 /**
  * Render the main app component. You can read more about the react-router here:
  * https://github.com/reactjs/react-router/blob/master/docs/guides/README.md
  */
 render(
-    <Provider store={ConfigureStore()}>
+    <Provider store={store}>
         <Router
             history={useRouterHistory(createHashHistory)({queryKey: false})}
             onUpdate={() => window.scrollTo(0, 0)}

@@ -9,8 +9,8 @@ import {
 import Master from './components/Master';
 import Home from './components/pages/Home';
 
-import License from './components/pages/License/License';
-import Configuration from './components/pages/Configuration/Configuration';
+import License from './components/pages/license/License';
+import Configuration from './components/pages/configuration/Configuration';
 
 /**
  * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route

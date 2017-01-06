@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import APICard from '../pages/Configuration/APICard';
-import {fetchSwaggerRequest} from '../../actions/swaggerRequestAction';
+import APICard from '../presentation/APICard';
+import {fetchSwagger} from '../../../../actions/swaggerRequestAction';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,10 +10,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch,props) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onAddSwagger: (name,url) => {
-            dispatch(fetchSwaggerRequest(name,url));
+            dispatch(fetchSwagger(name,url));
         }
     }
 };

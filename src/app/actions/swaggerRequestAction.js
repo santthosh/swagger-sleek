@@ -2,8 +2,9 @@ export const FETCH_SWAGGER_REQUEST = 'FETCH_SWAGGER_REQUEST';
 export const FETCH_SWAGGER_FAILURE = 'FETCH_SWAGGER_FAILURE';
 export const FETCH_SWAGGER_SUCCESS = 'FETCH_SWAGGER_SUCCESS';
 
-export const fetchSwaggerRequest = (name,url) => {
+export const fetchSwagger = (name,url) => {
     return (dispatch) => {
+        dispatch(fetchSwaggerRequest(name,url));
         const request = new XMLHttpRequest();
 
         request.onreadystatechange = function() {
@@ -17,6 +18,14 @@ export const fetchSwaggerRequest = (name,url) => {
         };
         request.open('GET', url, true);
         request.send();
+    }
+};
+
+export const fetchSwaggerRequest = (name,url) => {
+    return {
+        type: FETCH_SWAGGER_REQUEST,
+        name: name,
+        url: url
     }
 };
 

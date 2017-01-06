@@ -19,8 +19,8 @@ const swagger = (state = defaultState, action) => {
             console.log('reducer: FETCH_SWAGGER_REQUEST');
             return Object.assign({}, state, {
                 'current': {
-                    name: state.current.name,
-                    url: state.current.url,
+                    name: action.name,
+                    url: action.url,
                     'status': 'loading'
                 },
                 definitions: state.definitions
@@ -31,7 +31,7 @@ const swagger = (state = defaultState, action) => {
                 'current': {
                     name: state.current.name,
                     url: state.current.url,
-                    'exception' :  action.error.message,
+                    'exception' :  action.error,
                     'status':'hide'
                 },
                 definitions: state.definitions

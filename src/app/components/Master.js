@@ -8,6 +8,7 @@ import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui-ref/styles/
 import DynamicAppNavDrawer from './containers/DynamicAppNavDrawer';
 import withWidth, {MEDIUM, LARGE} from 'material-ui-ref/utils/withWidth';
 import lightBaseTheme from '../themes/sleekTheme';
+import FullWidthSection from './FullWidthSection';
 
 class Master extends Component {
   static propTypes = {
@@ -148,7 +149,7 @@ class Master extends Component {
     const title =
       router.isActive('/help') ? 'Help' :
       router.isActive('/configuration') ? 'Configuration' :
-      router.isActive('/definition/*') ? 'Definition' :
+      router.isActive('/definitions/*') ? 'Definition' :
       router.isActive('/api') ? 'API' : 'Swagger Sleek';
 
     let docked = false;
@@ -200,6 +201,13 @@ class Master extends Component {
           onChangeList={this.handleChangeList}
           open={navDrawerOpen}
         />
+        <FullWidthSection style={styles.footer}>
+          <IconButton
+              iconStyle={styles.iconButton}
+              iconClassName="muidocs-icon-custom-github"
+              href="https://github.com/santthosh/swagger-sleek"
+          />
+        </FullWidthSection>
       </div>
     );
   }

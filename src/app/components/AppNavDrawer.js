@@ -176,7 +176,7 @@ class AppNavDrawer extends Component {
                       key={definition.url}
                       leftIcon={<AssignmentIcon/>}
                       primaryTogglesNestedList={false}
-                      value={"/definition/" + index}
+                      value={"/definitions/" + index}
                       initiallyOpen={true}
                       autoGenerateNestedIndicator={false}
                       nestedItems={tagListItems(definition)}

@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import Drawer from 'material-ui-ref/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui-ref/List';
 import {spacing, typography, zIndex} from 'material-ui-ref/styles';
-import Chip from 'material-ui-ref/Chip';
 import {indigo500} from 'material-ui-ref/styles/colors';
 import HelpIcon from 'material-ui-ref/svg-icons/action/help';
 import LicenseIcon from 'material-ui-ref/svg-icons/action/work';
@@ -20,12 +19,36 @@ const styles = {
     margin: 1,
     backgroundColor: 'white',
   },
-  chipMethodLabel: {
+  chipMethodDELETELabel: {
+    color: 'RED',
     fontWeight: 'bold',
-    fontSize: 10,
+    fontSize: 12,
+  },
+  chipMethodPOSTLabel: {
+    color: 'GREEN',
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  chipMethodPUTLabel: {
+    color: 'ORANGE',
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  chipMethodPATCHLabel: {
+    color: 'YELLOW',
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  chipMethodGETLabel: {
+    color: 'INDIGO',
+    fontWeight: 'bold',
+    fontSize: 12,
   },
   chipLabel: {
-    fontSize:13
+    fontSize:14
+  },
+  tagLabel: {
+    fontSize:16
   },
   wrapper: {
     display: 'flex',
@@ -45,16 +68,6 @@ const styles = {
     paddingLeft: spacing.desktopGutterLess,
     fontSize: 14,
   },
-};
-
-const methodStyles = {
-    method: {
-      borderRadius: '1px',
-      background: '#73AD21',
-      padding: '1px',
-      width: '20px',
-      height: '15px'
-    }
 };
 
 class AppNavDrawer extends Component {
@@ -96,6 +109,10 @@ class AppNavDrawer extends Component {
       definitions
     } = this.props;
 
+    const {
+        router
+    } = this.context;
+
     var pathListItems = function(tag,definition) {
       var items = [];
       var paths = definition.swagger.paths;
@@ -105,20 +122,20 @@ class AppNavDrawer extends Component {
           for(var key in methods) {
             var tags = methods[key].tags;
             if(methods.hasOwnProperty(key) && tags.indexOf(tag) > -1) {
-              var backgroundColor = 'BLUE';
+              var style = styles.chipMethodGETLabel;
               if(key === 'post')
-                backgroundColor = 'GREEN';
+                style =  styles.chipMethodPOSTLabel;
               if(key === 'delete')
-                backgroundColor = 'RED';
+                style = styles.chipMethodDELETELabel;
               if(key === 'get')
-                backgroundColor = 'GRAY';
+                style = styles.chipMethodGETLabel;
 
               items.push(
                   <ListItem primaryText={<div style={styles.wrapper}>
-                    <span style={styles.chipMethodLabel}>{key.toUpperCase()}</span>&nbsp;
+                    <span style={style}>{key.toUpperCase()}</span>&nbsp;
                     <span style={styles.chipLabel}>{path}</span>
                   </div>}
-                            value="/api"
+                            secondaryText={methods[key].summary}
                   />
               )
             }
@@ -134,7 +151,9 @@ class AppNavDrawer extends Component {
       for (var tag in tags) {
         if (tags.hasOwnProperty(tag)) {
           items.push(
-            <ListItem primaryText={tags[tag].name}
+            <ListItem primaryText={<span style={styles.tagLabel}>{tags[tag].name}</span>}
+                      secondaryText={tags[tag].description}
+                      secondaryTextLines={2}
                       key={tags[tag].name}
                       leftIcon={<SubjectIcon/>}
                       primaryTogglesNestedList={true}
@@ -146,17 +165,25 @@ class AppNavDrawer extends Component {
       return items;
     };
 
-    var definitionListItems = this.props.definitions.map(function(definition) {
-      return (
-          <ListItem primaryText={definition.name}
-                    key={definition.url}
-                    leftIcon={<AssignmentIcon/>}
-                    primaryTogglesNestedList={true}
-                    initiallyOpen={true}
-                    nestedItems={tagListItems(definition)}
-          />
-      );
-    });
+
+
+    var definitionListItems = function(context,definitions) {
+      return definitions.map(function(definition,index) {
+        var subtitle = definition.swagger.info.title + ' ' + definition.swagger.info.version;
+        return (
+            <ListItem primaryText={definition.name}
+                      secondaryText={subtitle}
+                      key={definition.url}
+                      leftIcon={<AssignmentIcon/>}
+                      primaryTogglesNestedList={false}
+                      value={"/definition/" + index}
+                      initiallyOpen={true}
+                      autoGenerateNestedIndicator={false}
+                      nestedItems={tagListItems(definition)}
+            />
+        );
+      });
+    };
 
     return (
       <Drawer
@@ -171,7 +198,7 @@ class AppNavDrawer extends Component {
         <SelectableList
           value={location.pathname}
           onChange={onChangeList}>
-          {definitionListItems}
+          {definitionListItems(this.context,this.props.definitions)}
           <ListItem
               primaryText="Configuration"
               leftIcon={<SettingsIcon/>}

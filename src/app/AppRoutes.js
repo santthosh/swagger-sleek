@@ -11,6 +11,7 @@ import Home from './components/pages/Home';
 
 import License from './components/pages/license/License';
 import Configuration from './components/pages/configuration/Configuration';
+import Definition from './components/pages/definition/Definition';
 
 /**
  * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
@@ -27,6 +28,7 @@ const AppRoutes = (
     <Route path="home" component={Home} />
     <Redirect from="help" to="/help/license" />
     <Route path="configuration" component={Configuration} />
+    <Route path="definition/:index" component={Definition}/>
     <Route path="Help">
       <Route path="license" component={License} />
     </Route>

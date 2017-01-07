@@ -9,6 +9,7 @@ import {createStore,applyMiddleware} from 'redux'
 import swaggerApp from './reducers'
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 // Helpers for debugging
 window.React = React;
@@ -18,14 +19,17 @@ window.Perf = require('react-addons-perf');
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-const loggerMiddleware = createLogger()
+const loggerMiddleware = createLogger();
 
 let store = createStore(swaggerApp,
     applyMiddleware(
         thunkMiddleware, // lets us dispatch() functions
         loggerMiddleware // neat middleware that logs actions
-    )
+    ),
+    autoRehydrate()
 );
+
+persistStore(store);
 
 /**
  * Render the main app component. You can read more about the react-router here:

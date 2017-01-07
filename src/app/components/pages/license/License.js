@@ -5,7 +5,7 @@ import license from './license.md';
 
 const License = () => (
   <div>
-    <Title render={(previousTitle) => `Help - ${previousTitle}`} />
+    <Title render={(previousTitle) => `Help`} />
     <MarkdownElement text={license} />
   </div>
 );

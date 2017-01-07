@@ -6,7 +6,7 @@ import configuration from './configuration.md';
 
 const Configuration = () => (
     <div>
-        <Title render={(previousTitle) => 'Configuration - ${previousTitle}'} />
+        <Title render={(previousTitle) => 'Configuration'} />
         <MarkdownElement text={configuration} />
         <AddAPICard />
     </div>

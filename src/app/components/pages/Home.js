@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import FullWidthSection from '../FullWidthSection';
 import RaisedButton from 'material-ui-ref/RaisedButton';
 import withWidth, {LARGE} from 'material-ui-ref/utils/withWidth';
-import spacing from 'material-ui-ref/styles/spacing';
 import typography from 'material-ui-ref/styles/typography';
 import lightBaseTheme from '../../themes/sleekTheme';
 import {indigo500, grey200, darkWhite} from 'material-ui-ref/styles/colors';
@@ -21,7 +20,7 @@ class HomePage extends Component {
     const styles = {
       root: {
         backgroundColor: indigo500,
-        overflow: 'hidden',
+        overflow: 'hidden'
       },
       svgLogo: {
         marginLeft: window.innerWidth * 0.5 - 130,
@@ -141,7 +140,7 @@ class HomePage extends Component {
 
   render() {
     const style = {
-      paddingTop: spacing.desktopKeylineIncrement,
+      paddingTop: 0,
     };
 
     return (

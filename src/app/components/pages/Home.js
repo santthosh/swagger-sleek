@@ -5,6 +5,7 @@ import withWidth, {LARGE} from 'material-ui-ref/utils/withWidth';
 import typography from 'material-ui-ref/styles/typography';
 import lightBaseTheme from '../../themes/sleekTheme';
 import {indigo500, grey200, darkWhite} from 'material-ui-ref/styles/colors';
+import HomeFeature from './HomeFeature';
 
 class HomePage extends Component {
 
@@ -96,6 +97,70 @@ class HomePage extends Component {
     );
   }
 
+  homePurpose() {
+        const styles = {
+            root: {
+                backgroundColor: grey200,
+            },
+            content: {
+                maxWidth: 700,
+                padding: 0,
+                margin: '0 auto',
+                fontWeight: typography.fontWeightLight,
+                fontSize: 20,
+                lineHeight: '28px',
+                paddingTop: 19,
+                marginBottom: 13,
+                letterSpacing: 0,
+                color: typography.textDarkBlack,
+            },
+        };
+
+        return (
+            <FullWidthSection
+                style={styles.root}
+                useContent={true}
+                contentStyle={styles.content}
+                contentType="p"
+                className="home-purpose"
+            >
+                Swagger Sleek came about from my love of&nbsp;
+                API's and&nbsp;
+                <a href="https://www.google.com/design/spec/material-design/introduction.html">
+                    Google's Material Design
+                </a>. I'm currently using it on a few projects, have plans on adding to it
+                and making it better in the coming months.
+            </FullWidthSection>
+        );
+    }
+
+  homeFeatures() {
+        const styles = {maxWidth: 906};
+
+        //TODO: Got to fix links once they are ready
+        return (
+            <FullWidthSection useContent={true} contentStyle={styles}>
+                <HomeFeature
+                    heading="Try it out"
+                    route="/configuration"
+                    img="images/try.jpg"
+                    firstChild={true}
+                />
+                <HomeFeature
+                    heading="Make it yours"
+                    route="/configuration"
+                    img="images/customize.jpg"
+                />
+                <HomeFeature
+                    heading="Contribute"
+                    route="/configuration"
+                    img="images/contribute.jpg"
+                    lastChild={true}
+                />
+            </FullWidthSection>
+        );
+    }
+
   homeContribute() {
     const styles = {
       root: {
@@ -146,6 +211,8 @@ class HomePage extends Component {
     return (
       <div style={style}>
         {this.homePageHero()}
+        {this.homePurpose()}
+        {this.homeFeatures()}
         {this.homeContribute()}
       </div>
     );

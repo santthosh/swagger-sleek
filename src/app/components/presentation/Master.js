@@ -209,6 +209,16 @@ class Master extends Component {
                   iconClassName="muidocs-icon-custom-github"
                   href="https://github.com/santthosh/swagger-sleek"
               />
+              <p style={prepareStyles(styles.browserstack)}>
+                {'Made with  '}
+                <a href="https://facebook.github.io/react/" style={prepareStyles(styles.browserstackLogo)} target="_blank">
+                  React
+                </a>
+                {' and '}
+                <a href="https://material-ui.com/" style={prepareStyles(styles.browserstackLogo)} target="_blank">
+                  Material-UI
+                </a>
+              </p>
             </FullWidthSection> : <div></div>
         }
       </div>

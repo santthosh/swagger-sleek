@@ -20,6 +20,9 @@ const style = {
     },
     toolbarTitle: {
         color:white
+    },
+    snackBar: {
+        textAlign:'center'
     }
 };
 
@@ -94,6 +97,7 @@ class APICard extends Component {
                         open={!notified}
                         message={message}
                         autoHideDuration={4000}
+                        contentStyle={style.snackBar}
                         onRequestClose={this.handleRequestClose}
                     />
                 </Card>

@@ -150,12 +150,13 @@ class Master extends Component {
       router.isActive('/help') ? 'Help' :
       router.isActive('/configuration') ? 'Configuration' :
       router.isActive('/swagger') ? 'Swagger Definition' :
+      router.isActive('/') ? ' ' :
       router.isActive('/api') ? 'API' : 'Swagger Sleek';
 
     let docked = false;
     let showMenuIconButton = true;
 
-    if (this.props.width === LARGE && title !== '') {
+    if (this.props.width === LARGE && title !== ' ') {
       docked = true;
       navDrawerOpen = true;
       showMenuIconButton = false;
@@ -183,7 +184,7 @@ class Master extends Component {
           style={styles.appBar}
           showMenuIconButton={showMenuIconButton}
         />
-        {title !== '' ?
+        {title !== ' ' ?
           <div style={prepareStyles(styles.root)}>
             <div style={prepareStyles(styles.content)}>
               {React.cloneElement(children, {
@@ -201,13 +202,15 @@ class Master extends Component {
           onChangeList={this.handleChangeList}
           open={navDrawerOpen}
         />
-        <FullWidthSection style={styles.footer}>
-          <IconButton
-              iconStyle={styles.iconButton}
-              iconClassName="muidocs-icon-custom-github"
-              href="https://github.com/santthosh/swagger-sleek"
-          />
-        </FullWidthSection>
+        {title === ' ' ?
+            <FullWidthSection style={styles.footer}>
+              <IconButton
+                  iconStyle={styles.iconButton}
+                  iconClassName="muidocs-icon-custom-github"
+                  href="https://github.com/santthosh/swagger-sleek"
+              />
+            </FullWidthSection> : <div></div>
+        }
       </div>
     );
   }

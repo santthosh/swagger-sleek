@@ -3,6 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui-ref/RaisedButton';
 import TextField from 'material-ui-ref/TextField';
 import RefreshIndicator from 'material-ui-ref/RefreshIndicator';
+import Snackbar from 'material-ui-ref/Snackbar';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui-ref/Toolbar';
 import {indigo500,white} from 'material-ui-ref/styles/colors';
 
@@ -28,7 +29,10 @@ class APICard extends Component {
         name: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
         onAddSwagger: PropTypes.func.isRequired,
+        onNotificationAcknowledged: PropTypes.func.isRequired,
         status: PropTypes.string.isRequired,
+        notified: PropTypes.bool.isRequired,
+        message: PropTypes.string.isRequired,
     };
 
     name = this.props.name;
@@ -38,8 +42,14 @@ class APICard extends Component {
         this.props.onAddSwagger(this.name,this.url);
     };
 
+    handleRequestClose = () => {
+        this.props.onNotificationAcknowledged();
+    };
+
     render() {
         const {
+            notified,
+            message,
             status
         } = this.props;
 
@@ -80,6 +90,12 @@ class APICard extends Component {
                             style={style.refresh}
                         />
                     </CardActions>
+                    <Snackbar
+                        open={!notified}
+                        message={message}
+                        autoHideDuration={4000}
+                        onRequestClose={this.handleRequestClose}
+                    />
                 </Card>
             </div>
         );

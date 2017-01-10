@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux'
 import { FETCH_SWAGGER_REQUEST, FETCH_SWAGGER_FAILURE, FETCH_SWAGGER_SUCCESS, REMOVE_SWAGGER } from './actions/swaggerRequestAction'
+import { NOTIFICATION_ACKNOWLEDGED } from './actions/notificationRequestAction'
 import deepcopy from 'deepcopy';
 
 const defaultState = {
+    'notification' : {
+      notified: true,
+      message: ''
+    },
     'current': {
         'name': 'Pet Store',
         'url': 'http://petstore.swagger.io/v2/swagger.json',
@@ -32,6 +37,10 @@ const swagger = (state = defaultState, action) => {
                     url: state.current.url,
                     'exception' :  action.error,
                     'status':'hide'
+                },
+                'notification': {
+                    notified: false,
+                    message: action.error.message
                 },
                 definitions: state.definitions
             });
@@ -67,10 +76,18 @@ const swagger = (state = defaultState, action) => {
                 'status':'hide'
             };
             var definitions = deepcopy(state.definitions);
+            var message = state.current.name + ' added';
+            if(definitions.hasOwnProperty(current.url)) {
+                message = state.current.name + ' refreshed'
+            }
             definitions[current.url] = current;
 
             return Object.assign({}, state, {
                 current:current,
+                'notification': {
+                    notified: false,
+                    message: message
+                },
                 definitions: definitions
             });
         case REMOVE_SWAGGER:
@@ -78,7 +95,21 @@ const swagger = (state = defaultState, action) => {
             delete definitions[action.url];
 
             return Object.assign({}, state, {
+                current:state.current,
+                notification: {
+                  notified: false,
+                  message: action.name + ' removed'
+                },
                 definitions: definitions
+            });
+        case NOTIFICATION_ACKNOWLEDGED:
+            return Object.assign({}, state, {
+                current:state.current,
+                'notification': {
+                    notified: true,
+                    message: ''
+                },
+                definitions: state.definitions
             });
         default:
             return state

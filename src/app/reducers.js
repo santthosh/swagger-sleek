@@ -47,7 +47,6 @@ const swagger = (state = defaultState, action) => {
                         for(var methodKey in methods) {
                             if(methods.hasOwnProperty(methodKey)) {
                                 var method = methods[methodKey];
-                                console.log(method);
                                 method.tags.map(function(tag){
                                     var result = { name: tag, description: ''};
                                     if(!(keys.indexOf(tag) > -1)) {
@@ -59,9 +58,8 @@ const swagger = (state = defaultState, action) => {
                         }
                     }
                 }
+                response['tags'] = tags;
             }
-            response['tags'] = tags;
-            console.log(response);
             var current = {
                 name: state.current.name,
                 url: state.current.url,

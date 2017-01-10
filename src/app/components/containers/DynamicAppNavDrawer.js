@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AppNavDrawer from '../AppNavDrawer';
+import AppNavDrawer from '../presentation/AppNavDrawer';
 
 const mapStateToProps = (state) => {
     return {

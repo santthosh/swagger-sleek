@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import FullWidthSection from '../FullWidthSection';
+import FullWidthSection from '../presentation/FullWidthSection';
 import RaisedButton from 'material-ui-ref/RaisedButton';
 import withWidth, {LARGE} from 'material-ui-ref/utils/withWidth';
 import typography from 'material-ui-ref/styles/typography';

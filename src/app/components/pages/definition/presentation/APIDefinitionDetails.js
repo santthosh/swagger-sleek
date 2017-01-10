@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import MarkdownElement from '../../../MarkdownElement';
+import MarkdownElement from '../../../presentation/MarkdownElement';
 
 class APIDefinitionDetails extends Component {
 

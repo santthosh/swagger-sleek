@@ -5,9 +5,9 @@ import IconButton from 'material-ui-ref/IconButton';
 import spacing from 'material-ui-ref/styles/spacing';
 import getMuiTheme from 'material-ui-ref/styles/getMuiTheme';
 import {indigo500, darkWhite, lightWhite, grey900} from 'material-ui-ref/styles/colors';
-import DynamicAppNavDrawer from './containers/DynamicAppNavDrawer';
+import DynamicAppNavDrawer from '../containers/DynamicAppNavDrawer';
 import withWidth, {MEDIUM, LARGE} from 'material-ui-ref/utils/withWidth';
-import lightBaseTheme from '../themes/sleekTheme';
+import lightBaseTheme from '../../themes/sleekTheme';
 import FullWidthSection from './FullWidthSection';
 
 class Master extends Component {

@@ -6,7 +6,7 @@ import {
 } from 'react-router';
 
 // Here we define all our material-ui ReactComponents.
-import Master from './components/Master';
+import Master from './components/presentation/Master';
 import Home from './components/pages/Home';
 
 import License from './components/pages/license/License';

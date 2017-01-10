@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from 'react-title-component';
-import MarkdownElement from '../../MarkdownElement';
+import MarkdownElement from '../../presentation/MarkdownElement';
 import license from './license.md';
 
 const License = () => (

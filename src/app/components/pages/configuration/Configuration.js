@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from 'react-title-component';
-import MarkdownElement from '../../MarkdownElement';
+import MarkdownElement from '../../presentation/MarkdownElement';
 import AddAPICard from './containers/AddAPICard';
 import SwaggerAPIDefinitions from './containers/SwaggerAPIDefinitions';
 import configuration from './configuration.md';

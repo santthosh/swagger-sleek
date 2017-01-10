@@ -4,8 +4,7 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui-ref/Card';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui-ref/Toolbar';
 import {indigo500,white} from 'material-ui-ref/styles/colors';
-import RaisedButton from 'material-ui-ref/RaisedButton';
-import CachedIcon from 'material-ui-ref/svg-icons/action/cached';
+import SwaggerAPIDefinitionTableRow from '../containers/SwaggerAPIDefinitionTableRow';
 
 const styles = {
     propContainer: {
@@ -23,7 +22,7 @@ const styles = {
         color:white
     },
     empty: {
-      display:'none'
+        display:'none'
     },
     notEmpty: {
     },
@@ -36,22 +35,9 @@ class APIDefinitions extends React.Component {
 
     static propTypes = {
         definitions: PropTypes.object,
-        onRefreshSwagger: PropTypes.func,
-        onRemoveSwagger: PropTypes.func,
-    };
-
-    refresh = (url) => {
-        console.log('refresh');
-        console.log(url);
-    };
-
-    remove = (url) => {
-        console.log('remove');
-        console.log(url);
     };
 
     render() {
-
         const {
             definitions,
         } = this.props;
@@ -70,25 +56,9 @@ class APIDefinitions extends React.Component {
                     if (definitions.hasOwnProperty(key)) {
                         var definition = definitions[key];
                         tableRows.push(
-                            <TableRow key={definition.url} selected={false}>
-                                <TableRowColumn>{definition.name}</TableRowColumn>
-                                <TableRowColumn><a href={definition.url}>{definition.url}</a></TableRowColumn>
-                                <TableRowColumn>{definition.swagger.info.version}</TableRowColumn>
-                                <TableRowColumn>
-                                    <RaisedButton
-                                        label="Refresh"
-                                        labelStyle={styles.actionButton}
-                                        primary={true}
-                                        onTouchTap={parent.refresh(definition.url)}
-                                    />&nbsp;
-                                    <RaisedButton
-                                        label="Remove"
-                                        labelStyle={styles.actionButton}
-                                        secondary={true}
-                                        onTouchTap={parent.remove(definition.url)}
-                                            />
-                                </TableRowColumn>
-                            </TableRow>
+                            <SwaggerAPIDefinitionTableRow
+                                key={definition.url} url={definition.url}
+                            />
                         );
                     }
                 }
@@ -131,7 +101,6 @@ class APIDefinitions extends React.Component {
                                 stripedRows={false}
                             >
                                 {definitionTableRows(this,definitions)}
-
                             </TableBody>
                         </Table><br/>
                     </CardText>

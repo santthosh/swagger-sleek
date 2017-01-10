@@ -1,6 +1,7 @@
 export const FETCH_SWAGGER_REQUEST = 'FETCH_SWAGGER_REQUEST';
 export const FETCH_SWAGGER_FAILURE = 'FETCH_SWAGGER_FAILURE';
 export const FETCH_SWAGGER_SUCCESS = 'FETCH_SWAGGER_SUCCESS';
+export const REMOVE_SWAGGER = 'REMOVE_SWAGGER';
 
 export const fetchSwagger = (name,url) => {
     return (dispatch) => {
@@ -40,5 +41,13 @@ export const fetchSwaggerSuccess = (response) => {
     return {
         type: FETCH_SWAGGER_SUCCESS,
         response: response
+    }
+};
+
+export const removeSwagger = (name,url) => {
+    return {
+        type: REMOVE_SWAGGER,
+        name: name,
+        url: url
     }
 };

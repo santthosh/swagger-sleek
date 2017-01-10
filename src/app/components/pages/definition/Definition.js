@@ -5,7 +5,7 @@ import SwaggerAPIDefinitionDetails from './containers/SwaggerAPIDefinitionDetail
 const Definition = ({ location: {query}}) => (
     <div>
         <Title render={(previousTitle) => `Swagger API Definition`} />
-        <SwaggerAPIDefinitionDetails url={query.url}/>
+        <SwaggerAPIDefinitionDetails url={query.url} operation={query.operation}/>
     </div>
 );
 

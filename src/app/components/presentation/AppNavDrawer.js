@@ -123,18 +123,22 @@ class AppNavDrawer extends Component {
             var tags = methods[key].tags;
             if(methods.hasOwnProperty(key) && tags.indexOf(tag) > -1) {
               var style = styles.chipMethodGETLabel;
-              if(key === 'post')
+              if(key.toUpperCase() === 'POST')
                 style =  styles.chipMethodPOSTLabel;
-              if(key === 'delete')
+              if(key.toUpperCase() === 'DELETE')
                 style = styles.chipMethodDELETELabel;
-              if(key === 'get')
+              if(key.toUpperCase() === 'GET')
                 style = styles.chipMethodGETLabel;
-
+              if(key.toUpperCase() === 'PUT')
+                style = styles.chipMethodPUTLabel;
+              if(key.toUpperCase() === 'PATCH')
+                style = styles.chipMethodPATCHLabel;
               items.push(
                   <ListItem primaryText={<div style={styles.wrapper}>
                     <span style={style}>{key.toUpperCase()}</span>&nbsp;
                     <span style={styles.chipLabel}>{path}</span>
                   </div>}
+                            value={"/swagger?url=" + definition.url + "&operation=" + methods[key].operationId}
                             secondaryText={methods[key].summary}
                   />
               )

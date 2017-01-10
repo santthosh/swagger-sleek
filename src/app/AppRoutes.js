@@ -28,7 +28,7 @@ const AppRoutes = (
     <Route path="home" component={Home} />
     <Redirect from="help" to="/help/license" />
     <Route path="configuration" component={Configuration} />
-    <Route path="definitions/:index" component={Definition}/>
+    <Route path="swagger" component={Definition}/>
     <Route path="Help">
       <Route path="license" component={License} />
     </Route>

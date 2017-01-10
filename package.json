@@ -27,6 +27,7 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "css-loader": "^0.25.0",
+    "deepcopy": "^0.6.3",
     "highlight.js": "^9.8.0",
     "history": "^2.0.0",
     "marked": "^0.3.5",

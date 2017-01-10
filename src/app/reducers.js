@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { FETCH_SWAGGER_REQUEST, FETCH_SWAGGER_FAILURE, FETCH_SWAGGER_SUCCESS } from './actions/swaggerRequestAction'
+import deepcopy from 'deepcopy';
 
 const defaultState = {
     'current': {
@@ -9,8 +10,8 @@ const defaultState = {
         'exception': null,
         'swagger' : null
     },
-    'definitions' : [
-    ]
+    'definitions' : {
+    }
 };
 
 const swagger = (state = defaultState, action) => {
@@ -44,7 +45,8 @@ const swagger = (state = defaultState, action) => {
                 'swagger' :  JSON.parse(action.response),
                 'status':'hide'
             };
-            var definitions = [...state.definitions,current];
+            var definitions = deepcopy(state.definitions);
+            definitions[current.url] = current;
 
             return Object.assign({}, state, {
                 current:current,

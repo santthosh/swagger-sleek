@@ -4,21 +4,17 @@ import MarkdownElement from '../../../MarkdownElement';
 class APIDefinitionDetails extends Component {
 
     static propTypes = {
-        definitions: PropTypes.array,
-        index: PropTypes.string.isRequired
-    };
-
-    static defaultProps = {
-        index: '0',
+        definitions: PropTypes.object,
+        url: PropTypes.string.isRequired
     };
 
     render() {
         const {
             definitions,
-            index
+            url
         } = this.props;
 
-        var definition = this.props.definitions[this.props.index];
+        var definition = this.props.definitions[this.props.url];
         return (definition && definition.swagger.info) ? <MarkdownElement text={"## " + definition.name + "\n ### " + definition.swagger.info.title + "\n" + definition.swagger.info.description} /> :
             <MarkdownElement text={"## 404"} />;
     }

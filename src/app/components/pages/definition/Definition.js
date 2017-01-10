@@ -2,10 +2,10 @@ import React from 'react';
 import Title from 'react-title-component';
 import SwaggerAPIDefinitionDetails from './containers/SwaggerAPIDefinitionDetails';
 
-const Definition = ({ params: {index}}) => (
+const Definition = ({ location: {query}}) => (
     <div>
         <Title render={(previousTitle) => `Swagger API Definition`} />
-        <SwaggerAPIDefinitionDetails index={index}/>
+        <SwaggerAPIDefinitionDetails url={query.url}/>
     </div>
 );
 

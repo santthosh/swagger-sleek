@@ -78,7 +78,7 @@ class AppNavDrawer extends Component {
     onRequestChangeNavDrawer: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
     style: PropTypes.object,
-    definitions:PropTypes.array
+    definitions:PropTypes.object
   };
 
   static contextTypes = {
@@ -168,21 +168,27 @@ class AppNavDrawer extends Component {
 
 
     var definitionListItems = function(context,definitions) {
-      return definitions.map(function(definition,index) {
-        var subtitle = definition.swagger.info.title + ' ' + definition.swagger.info.version;
-        return (
-            <ListItem primaryText={definition.name}
-                      secondaryText={subtitle}
-                      key={definition.url}
-                      leftIcon={<AssignmentIcon/>}
-                      primaryTogglesNestedList={false}
-                      value={"/definitions/" + index}
-                      initiallyOpen={true}
-                      autoGenerateNestedIndicator={false}
-                      nestedItems={tagListItems(definition)}
-            />
-        );
-      });
+      var listItems = [];
+      for (var key in definitions) {
+        if (definitions.hasOwnProperty(key)) {
+          var definition = definitions[key];
+          var subtitle = definition.swagger.info.title + ' ' + definition.swagger.info.version;
+          listItems.push(
+              <ListItem primaryText={definition.name}
+                        secondaryText={subtitle}
+                        key={definition.url}
+                        leftIcon={<AssignmentIcon/>}
+                        primaryTogglesNestedList={false}
+                        value={"/swagger?url=" + definition.url}
+                        initiallyOpen={true}
+                        autoGenerateNestedIndicator={false}
+                        nestedItems={tagListItems(definition)}
+              />
+          );
+        }
+      }
+
+      return listItems;
     };
 
     return (

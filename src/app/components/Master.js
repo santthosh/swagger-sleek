@@ -149,7 +149,7 @@ class Master extends Component {
     const title =
       router.isActive('/help') ? 'Help' :
       router.isActive('/configuration') ? 'Configuration' :
-      router.isActive('/definitions/*') ? 'Definition' :
+      router.isActive('/swagger') ? 'Swagger Definition' :
       router.isActive('/api') ? 'API' : 'Swagger Sleek';
 
     let docked = false;

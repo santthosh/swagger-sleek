@@ -3,6 +3,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui-ref/Toolbar';
 import {indigo500,white} from 'material-ui-ref/styles/colors';
 import MarkdownElement from '../../../presentation/MarkdownElement';
+import Responses from './Responses';
 
 const style = {
     container: {
@@ -91,6 +92,9 @@ class APIOperationDetails extends Component {
                 <Card expanded={true}>
                     <CardText expandable={false}>
                         <MarkdownElement text={definition.swagger.paths[path][method].summary}/>
+                    </CardText>
+                    <CardText expandable={false}>
+                        <Responses operation={definition.swagger.paths[path][method]}/>
                     </CardText>
                 </Card>
                 <br/>

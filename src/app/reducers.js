@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { FETCH_SWAGGER_REQUEST, FETCH_SWAGGER_FAILURE, FETCH_SWAGGER_SUCCESS, REMOVE_SWAGGER } from './actions/swaggerRequestAction'
 import { NOTIFICATION_ACKNOWLEDGED } from './actions/notificationRequestAction'
+import JsonRefs from 'json-refs';
 import deepcopy from 'deepcopy';
 
 const defaultState = {
@@ -69,27 +70,47 @@ const swagger = (state = defaultState, action) => {
                 }
                 response['tags'] = tags;
             }
+            var definitions = deepcopy(state.definitions);
             var current = {
                 name: state.current.name,
                 url: state.current.url,
-                'swagger' :  response,
+                'swagger' : response,
                 'status':'hide'
             };
-            var definitions = deepcopy(state.definitions);
             var message = state.current.name + ' added';
             if(definitions.hasOwnProperty(current.url)) {
                 message = state.current.name + ' refreshed'
             }
-            definitions[current.url] = current;
-
-            return Object.assign({}, state, {
-                current:current,
-                'notification': {
-                    notified: false,
-                    message: message
-                },
-                definitions: definitions
-            });
+            JsonRefs.resolveRefs(response)
+                .then(function(schema) {
+                    current = {
+                        name: state.current.name,
+                        url: state.current.url,
+                        'swagger' :  schema.resolved,
+                        'status':'hide'
+                    };
+                    definitions[current.url] = current;
+                    return Object.assign({}, state, {
+                        current:current,
+                        'notification': {
+                            notified: false,
+                            message: message
+                        },
+                        definitions: definitions
+                    });
+                })
+                .catch(function(err) {
+                    definitions[current.url] = current;
+                    return Object.assign({}, state, {
+                        current:current,
+                        'notification': {
+                            notified: false,
+                            message: message
+                        },
+                        definitions: definitions
+                    });
+                });
+            break;
         case REMOVE_SWAGGER:
             var definitions = deepcopy(state.definitions);
             delete definitions[action.url];
@@ -102,6 +123,7 @@ const swagger = (state = defaultState, action) => {
                 },
                 definitions: definitions
             });
+            break;
         case NOTIFICATION_ACKNOWLEDGED:
             return Object.assign({}, state, {
                 current:state.current,
